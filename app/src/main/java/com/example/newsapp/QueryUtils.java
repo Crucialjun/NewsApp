@@ -2,7 +2,9 @@ package com.example.newsapp;
 
 import android.nfc.Tag;
 import android.preference.ListPreference;
+import android.text.Html;
 import android.text.TextUtils;
+import android.util.JsonReader;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -18,6 +20,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public final class QueryUtils {
@@ -147,9 +150,11 @@ public final class QueryUtils {
             // Create a JSONObject from the JSON response string
             JSONObject baseJsonResponse = new JSONObject(newsJSON);
 
+            JSONObject responses = baseJsonResponse.getJSONObject("response");
+
             // Extract the JSONArray associated with the key called "features",
             // which represents a list of features (or earthquakes).
-            JSONArray newsArray = baseJsonResponse.getJSONArray("articles");
+            JSONArray newsArray = responses.getJSONArray("results");
 
             // For each earthquake in the earthquakeArray, create an {@link Earthquake} object
             for (int i = 0; i < newsArray.length(); i++) {
@@ -158,21 +163,24 @@ public final class QueryUtils {
                 JSONObject currentNewsItem = newsArray.getJSONObject(i);
 
 
-                String title = currentNewsItem.getString("title");
+                String title = currentNewsItem.getString("webTitle");
 
-                String storyUrl = currentNewsItem.getString("url");
+                String storyUrl = currentNewsItem.getString("webUrl");
 
-                String urlToImage = currentNewsItem.getString("urlToImage");
+                String publishTime = currentNewsItem.getString("webPublicationDate");
 
-                String newsContent = currentNewsItem.getString("content");
+                JSONObject fields = currentNewsItem.getJSONObject("fields");
 
-                String author = currentNewsItem.getString("author");
 
-                String publishTime = currentNewsItem.getString("publishedAt");
+                String newsContent = fields.getString("body");
+
+                String author = fields.getString("publication");
+
+
 
                 // Create a new {@link Earthquake} object with the magnitude, location, time,
                 // and url from the JSON response.
-                News newsItem = new News(title,storyUrl,urlToImage,newsContent,author,publishTime);
+                News newsItem = new News(title,storyUrl,newsContent,author,publishTime);
 
                 // Add the new {@link Earthquake} to the list of earthquakes.
                 news.add(newsItem);

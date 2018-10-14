@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.SharedPreferences;
+import android.media.Image;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity
      * Url for News data from API
      */
     private static final String NEWS_REQUEST_URL =
-            "http://content.guardianapis.com/search?q=top-stories&api-key=c7182a80-671b-4e99-b850-4a7f24cb0e92&pageSize=11&show-fields=all";
+            "https://content.guardianapis.com/search?q=news&format=json&show-fields=thumbnail,publication,body&format=json&api-key=c7182a80-671b-4e99-b850-4a7f24cb0e92";
 
     private static final int NEWS_LOADER_ID = 1;
 
@@ -146,6 +147,7 @@ public class MainActivity extends AppCompatActivity
 
         return new NewsLoader(this,builder.toString());
     }
+
 
     @Override
     public void onLoadFinished(Loader<List<News>> loader, List<News> data) {

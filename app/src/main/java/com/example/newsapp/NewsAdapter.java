@@ -2,6 +2,7 @@ package com.example.newsapp;
 
 import android.content.Context;
 import android.net.Uri;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,9 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -44,21 +48,31 @@ public class NewsAdapter extends ArrayAdapter<News> {
         TextView title = listItemView.findViewById(R.id.newsTittle);
         title.setText(newsTitle);
 
-        String imageUrl = currentNewsItem.getUrlToImage();
-        ImageView newsImage = listItemView.findViewById(R.id.thumbnail);
-       newsImage.setImageURI(Uri.parse(imageUrl));
 
         String content = currentNewsItem.getNewsContent();
+
+        String fromattedContent = stripHtml(content);
         TextView newsContent = listItemView.findViewById(R.id.newsArticle);
-        newsContent.setText(content);
+        newsContent.setText(fromattedContent);
 
         String authorName = currentNewsItem.getAuthor();
         TextView author = listItemView.findViewById(R.id.author_name);
-        author.setText(authorName);
+        author.setText("Source : " + authorName);
 
-        String timeOfPublish = currentNewsItem.getPublishTime();
-        TextView publishTime = listItemView.findViewById(R.id.publishtime);
-        publishTime.setText(timeOfPublish);
+
+
+       String timeOfPublish = currentNewsItem.getPublishTime();
+
+       SimpleDateFormat dateFormat = new SimpleDateFormat("yyy-MM-dd");
+        Date date = null;
+        try {
+            date = dateFormat.parse(timeOfPublish);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        String formattedDate = formatDate(date);
+       TextView publishTime = listItemView.findViewById(R.id.publishtime);
+        publishTime.setText(formattedDate);
 
 
         return listItemView;
@@ -66,4 +80,16 @@ public class NewsAdapter extends ArrayAdapter<News> {
 
 
     }
+
+    private String formatDate(Date dateObject) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
+        return dateFormat.format(dateObject);
+    }
+
+    public String stripHtml(String html)
+    {
+        return Html.fromHtml(html).toString();
+    }
+
+
 }

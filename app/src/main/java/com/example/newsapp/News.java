@@ -1,18 +1,18 @@
 package com.example.newsapp;
 
+import java.util.Date;
+
 public class News {
     private String mNewsTitle;
     private String mStoryUrl;
-    private String mUrlToImage;
     private String mNewsContent;
     private String mAuthor;
     private String mPublishTime;
 
-    public News(String newsTitle,String storyUrl,String urlToImage,String newsContent,String author
+    public News(String newsTitle,String storyUrl,String newsContent,String author
             , String publishTime){
         mNewsTitle = newsTitle;
         mStoryUrl =storyUrl;
-        mUrlToImage = urlToImage;
         mNewsContent = newsContent;
         mAuthor = author;
         mPublishTime = publishTime;
@@ -27,9 +27,6 @@ public class News {
         return mStoryUrl;
     }
 
-    public String getUrlToImage() {
-        return mUrlToImage;
-    }
 
     public String getNewsContent() {
         return mNewsContent;
