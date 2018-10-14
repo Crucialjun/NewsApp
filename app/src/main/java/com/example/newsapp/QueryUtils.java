@@ -1,10 +1,6 @@
 package com.example.newsapp;
 
-import android.nfc.Tag;
-import android.preference.ListPreference;
-import android.text.Html;
 import android.text.TextUtils;
-import android.util.JsonReader;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -20,7 +16,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public final class QueryUtils {

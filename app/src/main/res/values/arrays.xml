@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="labels">
-        <item>Relevancy</item>
-        <item>Popularity</item>
-        <item>PublishedAt</item>
+        <item>relevance</item>
+        <item>oldest</item>
+        <item>newest</item>
     </string-array>
 
     <string-array name="values">
-        <item>relevancy</item>
-        <item>popularity</item>
-        <item>publishedAt</item>
+        <item>relevance</item>
+        <item>oldest</item>
+        <item>newest</item>
     </string-array>
 
 </resources>

@@ -1,7 +1,5 @@
 package com.example.newsapp;
 
-import java.util.Date;
-
 public class News {
     private String mNewsTitle;
     private String mStoryUrl;
