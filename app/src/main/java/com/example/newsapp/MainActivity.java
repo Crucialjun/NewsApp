@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity
      * Url for News data from API
      */
     private static final String NEWS_REQUEST_URL =
-            "https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=2fb188ff2c6d4b10bd223d3173718cda";
+            "http://content.guardianapis.com/search?q=top-stories&api-key=c7182a80-671b-4e99-b850-4a7f24cb0e92&pageSize=11&show-fields=all";
 
     private static final int NEWS_LOADER_ID = 1;
 
@@ -142,7 +142,7 @@ public class MainActivity extends AppCompatActivity
         Uri.Builder builder = baseUri.buildUpon();
 
         builder.appendQueryParameter("pageSize",maxPages);
-        builder.appendQueryParameter("sortBy",orderBy);
+        builder.appendQueryParameter("orderBy",orderBy);
 
         return new NewsLoader(this,builder.toString());
     }
