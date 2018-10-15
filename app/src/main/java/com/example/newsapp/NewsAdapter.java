@@ -54,7 +54,7 @@ public class NewsAdapter extends ArrayAdapter<News> {
 
         String authorName = currentNewsItem.getAuthor();
         TextView author = listItemView.findViewById(R.id.author_name);
-        author.setText("Source : " + authorName);
+        author.setText("Author : " + authorName);
 
 
 

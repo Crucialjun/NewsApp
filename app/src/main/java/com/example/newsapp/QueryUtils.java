@@ -166,10 +166,13 @@ public final class QueryUtils {
 
                 JSONObject fields = currentNewsItem.getJSONObject("fields");
 
-
                 String newsContent = fields.getString("body");
 
-                String author = fields.getString("publication");
+                JSONArray tags = currentNewsItem.getJSONArray("tags");
+
+                JSONObject tagsObject = tags.getJSONObject(0);
+
+                String author = tagsObject.getString("webTitle");
 
 
 

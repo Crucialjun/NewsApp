@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity
      * Url for News data from API
      */
     private static final String NEWS_REQUEST_URL =
-            "https://content.guardianapis.com/search?q=news&format=json&show-fields=publication,body&format=json&api-key=c7182a80-671b-4e99-b850-4a7f24cb0e92";
+            "https://content.guardianapis.com/search?q=news&format=json&show-fields=publication,body&format=json&show-tags=contributor&api-key=c7182a80-671b-4e99-b850-4a7f24cb0e92";
 
     private static final int NEWS_LOADER_ID = 1;
 
